@@ -22,7 +22,7 @@ import java.util.logging.Level;
 @RestController
 public class FileController {
 
-    final static String path = "uploads/";
+    final static String path = "app/uploads/";
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
@@ -33,8 +33,8 @@ public class FileController {
         String fileName = fileStorageService.storeFile(file);
 
 
-        CSG result = FileConverter.SchemToStl(new File(path+fileName));
-        String outputName = path+fileName.replace(".schematic", ".stl");
+        CSG result = FileConverter.SchemToStl(new File(path + fileName));
+        String outputName = path + fileName.replace(".schematic", ".stl");
         try {
             FileUtil.write(
                     Paths.get(outputName),
@@ -45,7 +45,7 @@ public class FileController {
         }
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
-                .path(outputName)
+                .path(fileName)
                 .toUriString();
 
         return new UploadFileResponse(fileName, fileDownloadUri,
