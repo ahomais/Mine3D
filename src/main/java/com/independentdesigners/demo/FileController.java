@@ -22,7 +22,7 @@ import java.util.logging.Level;
 @RestController
 public class FileController {
 
-    static String path = "C:/Users/ahoma/MC3Drequests/";
+    final static String path = "uploads/";
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
